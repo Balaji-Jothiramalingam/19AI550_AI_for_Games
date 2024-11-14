@@ -1,17 +1,17 @@
 ## Ex.No: 7 Implementation of Decision Tree Learning
 ## DATE:5/10/2024
-## REGISTER NUMBER : 212221230126
-AIM:
+## REGISTER NUMBER : 212221243001
+## AIM:
 Design a decision tree for following data. Healthy, In Cover, With Ammo -> Attack Hurt, In Cover, With Ammo -> Attack Healthy, In Cover, Empty -> Defend Hurt, In Cover, Empty -> Defend Hurt, Exposed, With Ammo -> Defend
 
-Algorithm:
-Start the program
+## Algorithm:
+1) Start the program
 
-import the necessary packages
+2) import the necessary packages
 
-Design a training data and test data
+3) Design a training data and test data
 
-Create a decision tree classifier model
+4) Create a decision tree classifier model
 
 Output the predictions
 
@@ -21,12 +21,13 @@ Program:
 from sklearn import tree
 import pandas as pd
 
-# Data: [Health, Cover, Ammo, Exposed]
-# Health: 1 for Healthy, 0 for Hurt
-# Cover: 1 for In Cover, 0 for Exposed
-# Ammo: 1 for With Ammo, 0 for Empty
-# Exposed: 1 for Exposed, 0 for In Cover
-# Actions: 0 for Defend, 1 for Attack
+# Data: 
+[Health, Cover, Ammo, Exposed]
+Health: 1 for Healthy, 0 for Hurt
+Cover: 1 for In Cover, 0 for Exposed
+Ammo: 1 for With Ammo, 0 for Empty
+ Exposed: 1 for Exposed, 0 for In Cover
+Actions: 0 for Defend, 1 for Attack
 
 # Define the training data and corresponding labels (actions)
 data = [
@@ -67,8 +68,10 @@ import matplotlib.pyplot as plt
 plt.figure(figsize=(10, 6))
 tree.plot_tree(clf, feature_names=['Health', 'Cover', 'Ammo', 'Exposed'], class_names=['Defend', 'Attack'], filled=True)
 plt.show()
-Output:
-image
+## Output:
 
-Result:
+
+![Uploading image.png…]()
+
+## Result:
 Thus the optimum value of max player was found using minimax search.
