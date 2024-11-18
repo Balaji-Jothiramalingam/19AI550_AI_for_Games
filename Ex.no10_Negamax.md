@@ -14,7 +14,27 @@ Write a Nega-max search algorithm to find the root value of Player from the  gra
 9. Stop the program. 
 
 ### Program:
+```
+import math
 
+def negamax(curDepth, nodeIndex, scores, targetDepth):
+    # Base case: target depth reached
+    if curDepth == targetDepth:
+        return scores[nodeIndex]
+
+    # Negamax assumes max turn is represented by positive values
+    value1 = negamax(curDepth + 1, nodeIndex * 2, scores, targetDepth)
+    value2 = negamax(curDepth + 1, nodeIndex * 2 + 1, scores, targetDepth)
+
+    return max(-value1, -value2)  # Flip the sign for the other player's turn
+
+# Driver code
+scores = [3, 5, 2, 9, 12, 5, 23, 20]
+treeDepth = math.log(len(scores), 2)  # Calculate depth of node, log(8, base 2) = 3
+print("The optimal value is: ", end="")
+print(negamax(0, 0, scores, int(treeDepth)))
+
+```
 
 
 
@@ -28,6 +48,7 @@ Write a Nega-max search algorithm to find the root value of Player from the  gra
 ### Output:
 
 
+![377736572-351501a8-9f02-4dcf-a5c4-6a0b7b57acf9](https://github.com/user-attachments/assets/98cd5550-0e55-488e-84c0-d8f05df6aeaa)
 
 ### Result:
 Thus the root value of player was found using negamax search.
