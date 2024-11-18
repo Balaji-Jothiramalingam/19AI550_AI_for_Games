@@ -26,13 +26,14 @@ Redraw the screen and display the updated score.
 Continuously check for collision events and respond accordingly.
 ## PROGRAM:
 # Import necessary libraries
+```
 import pygame
 import random
 
-# Initialize pygame
+Initialize pygame
 pygame.init()
 
-# Define screen dimensions and colors
+Define screen dimensions and colors
 WIDTH, HEIGHT = 800, 600
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -40,11 +41,11 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)  # Color for obstacles
 
-# Set up the display
+Set up the display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Block Collector: A 2D Adventure")
 
-# Load a background image or create a gradient background
+ Load a background image or create a gradient background
 try:
     background = pygame.image.load("download.jpeg").convert()
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))  # Scale image to fit screen
@@ -55,7 +56,7 @@ except:
         color = (int(255 * y / HEIGHT), int(128 * y / HEIGHT), int(64 * y / HEIGHT))
         pygame.draw.line(background, color, (0, y), (WIDTH, y))
 
-# Define player class
+Define player class
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
@@ -82,7 +83,7 @@ class Player(pygame.sprite.Sprite):
         self.rect.top = max(self.rect.top, 0)
         self.rect.bottom = min(self.rect.bottom, HEIGHT)
 
-# Define item class for score boxes
+Define item class for score boxes
 class Item(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
@@ -92,7 +93,7 @@ class Item(pygame.sprite.Sprite):
         self.rect.x = random.randint(0, WIDTH - self.rect.width)
         self.rect.y = random.randint(0, HEIGHT - self.rect.height)
 
-# Define moving obstacle class (blue boxes)
+Define moving obstacle class (blue boxes)
 class Obstacle(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
@@ -115,36 +116,36 @@ class Obstacle(pygame.sprite.Sprite):
         if self.rect.top <= 0 or self.rect.bottom >= HEIGHT:
             self.speed_y *= -1
 
-# Initialize player, collectible items, and moving obstacles
+Initialize player, collectible items, and moving obstacles
 player = Player()
 items = pygame.sprite.Group()
 for i in range(5):
     item = Item()
     items.add(item)
 
-# Create 3 moving obstacles
+Create 3 moving obstacles
 obstacles = pygame.sprite.Group()
 for i in range(3):
     obstacle = Obstacle()
     obstacles.add(obstacle)
 
-# Add all sprites to a group
+ Add all sprites to a group
 all_sprites = pygame.sprite.Group()
 all_sprites.add(player)
 all_sprites.add(*items)
 all_sprites.add(*obstacles)
 
-# Set timer to add new score boxes (items) every few seconds
+Set timer to add new score boxes (items) every few seconds
 NEW_ITEM_EVENT = pygame.USEREVENT + 1
 pygame.time.set_timer(NEW_ITEM_EVENT, 3000)  # Generate a new score box every 3 seconds
 
-# Game variables
+Game variables
 running = True
 score = 0
 font = pygame.font.SysFont(None, 36)
 game_over = False
 
-# Game loop
+Game loop
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -189,6 +190,7 @@ while running:
         pygame.display.flip()
         
 pygame.quit()
+```
 ## OUTPUT:
 ![image](https://github.com/user-attachments/assets/b6e56368-73b1-4807-8512-277d5bf71ec8)
 
