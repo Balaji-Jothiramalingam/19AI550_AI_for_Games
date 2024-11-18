@@ -1,6 +1,6 @@
 # Ex.No: 5  Implementation of Jumping behavior 
-### DATE:                                                                            
-### REGISTER NUMBER : 
+### DATE:  20/10/24                                                             
+### REGISTER NUMBER : 212221243001
 ### AIM: 
 To write a python program to simulate Jumbing behavior. 
 ### Algorithm:
@@ -16,6 +16,77 @@ To write a python program to simulate Jumbing behavior.
 10. land the player and display the player at every timestep
 11.  Stop the program
  ### Program:
+ ```
+
+import pygame
+from pygame.locals import *
+from sys import exit
+
+sprite_image_filename = r'C:\Users\bhuvi\OneDrive\Pictures\backgrounds\th (1).jpeg'
+pygame.init()
+screen = pygame.display.set_mode((640, 480), 0, 32)
+sprite = pygame.image.load(sprite_image_filename)
+screen.fill((0, 0, 0))
+clock = pygame.time.Clock()
+
+# Speed in pixels per second
+speed = 250
+# The x coordinate of our sprite
+x = 0.0
+
+# Variables for jumping
+y = 100
+y_velocity = 0
+gravity = 1000  # pixels per second squared
+jump_speed = -500  # initial jump velocity
+
+# Flag to check if the sprite is on the ground
+is_jumping = False
+
+while True:
+   for event in pygame.event.get():
+       if event.type == QUIT:
+           pygame.quit()
+           exit()
+       elif event.type == KEYDOWN:
+           if event.key == K_SPACE and not is_jumping:
+               y_velocity = jump_speed
+               is_jumping = True
+   
+   # Clear the screen
+   screen.fill((0, 0, 0))
+   
+   # Calculate the time passed
+   time_passed = clock.tick(30)
+   time_passed_seconds = time_passed / 1000.0
+   
+   # Calculate the distance moved horizontally
+   distance_moved = time_passed_seconds * speed
+   x += distance_moved
+   
+   # Calculate vertical movement
+   y_velocity += gravity * time_passed_seconds
+   y += y_velocity * time_passed_seconds
+   
+   # Check if sprite has landed on the ground
+   if y >= 100:
+       y = 100
+       y_velocity = 0
+       is_jumping = False
+   
+   # Draw the sprite at the new position
+   screen.blit(sprite, (x, y))
+   
+   # If the image goes off the end of the screen, move it back
+   if x > 640:
+       x -= 640
+   
+   # Update the display
+   pygame.display.update()
+```
+
+
+
 
 
 
@@ -29,6 +100,7 @@ To write a python program to simulate Jumbing behavior.
 
 ### Output:
 
+![360811738-5ba0dd49-9412-42cf-86da-731b1fdb006d](https://github.com/user-attachments/assets/2f8fb813-95ed-432c-9402-71e813cc22e8)
 
 
 ### Result:
